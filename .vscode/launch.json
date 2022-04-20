@@ -1,0 +1,48 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'kpart'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=kpart",
+                    "--package=kpart"
+                ],
+                "filter": {
+                    "name": "kpart",
+                    "kind": "bin"
+                }
+            },
+            "args": [
+                "foobar",
+                "32"
+            ],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'kpart'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=kpart",
+                    "--package=kpart"
+                ],
+                "filter": {
+                    "name": "kpart",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}

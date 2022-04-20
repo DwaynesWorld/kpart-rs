@@ -1,0 +1,10 @@
+[package]
+name = "kpart"
+version = "0.1.0"
+edition = "2021"
+authors = ["K. Thompson"]
+license = "Unlicense OR MIT"
+description = "A simple package to calculate the partition a key maps to in Kafka."
+
+[dependencies]
+clap = { version = "3.0", features = ["derive"] }
