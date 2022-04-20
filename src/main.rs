@@ -3,22 +3,26 @@ use clap::Parser;
 #[cfg(test)]
 use std::collections::HashMap;
 
-/// Search for a pattern in a file and display the lines that contain it.
-#[derive(Parser)]
-struct Cli {
-    /// The key to partition on.
+/// Simple program to calculate the partition number for a key.
+#[derive(Parser, Debug)]
+#[clap(author, version, about, long_about = None)]
+struct Args {
+    /// The key to calculate the partition for.
+    #[clap(short, long)]
     pub key: String,
-    /// The number of partitions of the topic.
+
+    /// The number of partitions.
+    #[clap(short, long)]
     pub num_partitions: i32,
 }
 
 fn murmur2(data: &[u8]) -> i32 {
     let length = data.len() as i32;
-    let seed = -1756908916 as i32; // 0x9747b28c;
+    let seed = -1756908916 as i32;
 
     // 'm' and 'r' are mixing constants generated offline.
     // They're not really 'magic', they just happen to work well.
-    let m = 1540483477; // 0x5bd1e995;
+    let m = 1540483477;
     let r = 24;
 
     // Initialize the hash to a random value
@@ -86,7 +90,7 @@ fn get_partition(key: &str, num_partitions: i32) -> i32 {
 }
 
 fn main() {
-    let args = Cli::parse();
+    let args = Args::parse();
     let p = get_partition(&args.key, args.num_partitions);
     println!("Partition: {}", p)
 }
